@@ -1,0 +1,30 @@
+<div class="container body-content">
+    <div class="row">
+        <div class="col-md-12">
+            <article>
+                <header>
+                    <h2>{{recipe.title}}</h2>
+                </header>
+
+                <p>
+                    {{recipe.content}}
+                </p>
+
+                <small class="author">
+                    {{recipe.author.fullName}}
+                </small>
+
+                <footer>
+                    <div class="pull-right">
+                        {{#if isUserAuthorized}}
+                        <a class="btn btn-success btn-xs" href="/recipe/edit/{{recipe.id}}">Edit &raquo;</a>
+                        <a class="btn btn-danger btn-xs" href="/recipe/delete/{{recipe.id}}">Delete &raquo;</a>
+                        {{/if}}
+
+                        <a class="btn btn-default btn-xs" href="/">Back &raquo;</a>
+                    </div>
+                </footer>
+            </article>
+        </div>
+    </div>
+</div>
