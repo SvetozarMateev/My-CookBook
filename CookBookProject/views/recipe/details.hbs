@@ -1,30 +1,78 @@
+<head>
+    <link  href="\stylesheets\customstyles.css",rel="stylesheet">
+</head>
 <div class="container body-content">
     <div class="row">
         <div class="col-md-12">
-            <article>
+            <article class="cooking-content">
                 <header>
-                    <h2>{{recipe.title}}</h2>
-                </header>
+                    <div class="title">
+                        <h2><span class="title">{{recipe.title}}</span></h2>
 
-                <p>
-                    {{recipe.content}}
-                </p>
-
-                <small class="author">
-                    {{recipe.author.fullName}}
-                </small>
-
-                <footer>
-                    <div class="pull-right">
-                        {{#if isUserAuthorized}}
-                        <a class="btn btn-success btn-xs" href="/recipe/edit/{{recipe.id}}">Edit &raquo;</a>
-                        <a class="btn btn-danger btn-xs" href="/recipe/delete/{{recipe.id}}">Delete &raquo;</a>
-                        {{/if}}
-
-                        <a class="btn btn-default btn-xs" href="/">Back &raquo;</a>
                     </div>
-                </footer>
+                </header>
             </article>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <p>
+            <h3>Ingredients:</h3>
+            <div class="texts">
+                {{recipe.ingredients}}
+            </div>
+            </p>
+        </div>
+        <div class="col-md-6">
+                <div class="cooking-method">
+                    <p class="cooking">
+                    <h3>How to do it:</h3>
+                    <div class="texts">
+                        {{recipe.content}}
+                    </div>
+
+                    </p>
+                </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10">
+                <div class="author-counter">
+                    <small class="author">
+                        <div class="texts-small">
+                            <h5>Author:</h5>
+
+                        </div>
+                        {{recipe.author.fullName}}
+                    </small>
+                    <small class="counter">
+                        <div class="texts-small">
+                            <h5>Views:</h5>
+
+                        </div>
+                        {{recipe.counter}}
+                    </small>
+                </div>
+                <div class="EDB">
+                    <footer class="buttons">
+                        <div class="pull-right">
+                            {{#if isUserAuthorized}}
+                            <div class="edit-button">
+                                <a class="btn btn-success btn-xs" href="/recipe/edit/{{recipe.id}}">Edit &raquo;</a>
+                            </div>
+                            <div class="delete-button">
+                                <a class="btn btn-danger btn-xs" href="/recipe/delete/{{recipe.id}}">Delete &raquo;</a>
+                            </div>
+
+                            {{/if}}
+                            <div class="back-button">
+                                <a class="btn btn-default btn-xs" href="/">Back &raquo;</a>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+
+
+            </div>
         </div>
     </div>
 </div>

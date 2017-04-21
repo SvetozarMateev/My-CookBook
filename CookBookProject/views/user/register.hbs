@@ -2,27 +2,27 @@
     <div class="well">
         <form class="form-horizontal" method="post" action="/user/register">
             <fieldset>
-                <legend>Register</legend>
+                <legend><span class="input-param-2">Register</span></legend>
                 <div class="form-group">
-                    <label class="col-sm-4 control-label" for="inputEmail">Email</label>
+                    <label class="col-sm-4 control-label" for="inputEmail"><span class="input-param">Email</span></label>
                     <div class="col-sm-4 ">
                         <input type="text" class="form-control" id="inputEmail" placeholder="Email" name="email" required value={{email}} >
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-4 control-label" for="inputFullName">Full Name</label>
+                    <label class="col-sm-4 control-label" for="inputFullName"><span class="input-param">Full Name</span></label>
                     <div class="col-sm-4 ">
                         <input type="text" class="form-control" id="inputFullName" placeholder="Full Name" required name="fullName" value={{fullName}}>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-4 control-label" for="inputPassword">Password</label>
+                    <label class="col-sm-4 control-label" for="inputPassword"><span class="input-param">Password</span></label>
                     <div class="col-sm-4">
                         <input type="password" class="form-control" id="inputPassword" placeholder="Password" required name="password">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-4 control-label">Confirm Password</label>
+                    <label class="col-sm-4 control-label"><span class="input-param">Confirm Password</span></label>
                     <div class="col-sm-4">
                         <input type="password" class="form-control" id="inputPassword" placeholder="Confirm Password" required name="repeatedPassword">
                     </div>
@@ -30,7 +30,7 @@
                 <div class="form-group">
                     <div class="col-sm-4 col-sm-offset-4">
                         <button type="reset" class="btn btn-default">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary" style="background-color:darkred;border-color: darkred">Submit</button>
                     </div>
                 </div>
             </fieldset>

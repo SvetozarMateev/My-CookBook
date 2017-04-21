@@ -1,27 +1,45 @@
-<div class="container body-content span=8 offset=2">
-    <div class="well">
-        <form class="form-horizontal" method="post" action="/user/login">
-            <fieldset>
-                <legend>Login</legend>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">Email</label>
-                    <div class="col-sm-4 ">
-                        <input type="text" class="form-control" id="inputEmail" placeholder="Email" name="email">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="container body-content span=8 offset=2">
+                    <div class="form-field">
+                        <div class="well">
+                            <form class="form-horizontal" method="post" action="/user/login">
+                                <fieldset>
+                                    <legend><span class="input-param-2">Login</span></legend>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label"><span class="input-param">Email</span></label>
+                                        <div class="col-sm-4 ">
+                                            <input type="text" class="form-control" id="inputEmail" placeholder="Email" name="email">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-4 control-label"><span class="input-param">Password</span></label>
+                                        <div class="col-sm-4">
+                                            <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-4 col-sm-offset-4">
+
+                                                <a class="btn btn-default" href="/">Cancel</a>
+
+
+
+                                                <button type="submit" class="btn btn-primary" style="background-color:darkred;border-color: darkred">Login</button>
+
+
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label class="col-sm-4 control-label">Password</label>
-                    <div class="col-sm-4">
-                        <input type="password" class="form-control" id="inputPassword" placeholder="Password" name="password">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-4 col-sm-offset-4">
-                        <a class="btn btn-default" href="/">Cancel</a>
-                        <button type="submit" class="btn btn-primary">Login</button>
-                    </div>
-                </div>
-            </fieldset>
-        </form>
+            </div>
+        </div>
+
     </div>
-</div>
+
+

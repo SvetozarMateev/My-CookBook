@@ -32,12 +32,12 @@ userSchema.method ({
     },
     isInRole:function (roleName) {
         return Role.findOne({name:roleName}).then(role=>{
-            console.log(role);
+
             if(!role){
                 return false;
             }
             let isInRole = this.roles.indexOf(role.id !==-1)
-            console.log(isInRole);
+
             return isInRole;
         })
     }

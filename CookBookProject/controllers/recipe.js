@@ -32,14 +32,21 @@ module.exports={
     },
     details:(req,res)=>{
         let id=req.params.id;
-
+        let counter=0;
         Recipe.findById(id).populate('author').then(recipe=>{
+            counter=recipe.counter;
+            counter+=1;
+            Recipe.update({_id:id},{$set:{counter:counter}}).then(updateStatus=>{
+
+            });
+
             if(!req.user){
                 res.render('recipe/details',{recipe:recipe,isUserAuthorized:false});
                 return;
             }
             req.user.isInRole('Admin').then(isAdmin=>{
                 let isUserAuthorized=isAdmin||req.user.isAuthor(recipe);
+                console.log(isUserAuthorized)
                 res.render('recipe/details',{recipe:recipe,isUserAuthorized:isUserAuthorized});
 
             })
@@ -47,7 +54,7 @@ module.exports={
         })
     },
     editGet:(req,res)=>{
-        console.log(req);
+
 
         let id = req.params.id;
         if(!req.isAuthenticated()){
@@ -59,10 +66,11 @@ module.exports={
         }
         Recipe.findById(id).then(recipe=>{
             req.user.isInRole('Admin').then(isAdmin=>{
-                if(!isAdmin&& !req.user.isAuthor(recipe)){
+                if(!isAdmin && !req.user.isAuthor(recipe)){
                     res.redirect('/');
                     return;
                 }
+                console.log(req.user.isInRole('Admin'));
                 res.render('recipe/edit',recipe)
             });
 
@@ -77,11 +85,13 @@ module.exports={
             errorMsg='Invalid title!'
         }else if(!articleArgs.content){
             errorMsg='Invalid content'
+        }else if(!articleArgs.ingredients){
+            errorMsg='Invalid ingredients'
         }
         if (errorMsg){
             res.render('recipe/edit',{error:errorMsg})
         }else {
-            Recipe.update({_id:id},{$set:{title:articleArgs.title,content:articleArgs.content}})
+            Recipe.update({_id:id},{$set:{title:articleArgs.title,content:articleArgs.content,ingredients:articleArgs.ingredients}})
                 .then(updateStatus=>{
                     res.redirect(`/recipe/details/${id}`)
                 })
