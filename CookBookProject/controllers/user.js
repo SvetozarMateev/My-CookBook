@@ -1,5 +1,6 @@
 const User = require('mongoose').model('User');
 const Role = require('mongoose').model('Role');
+const Recipe=require('mongoose').model('Recipe')
 
 const encryption = require('./../utilities/encryption');
 
@@ -87,5 +88,23 @@ module.exports = {
     logout: (req, res) => {
         req.logOut();
         res.redirect('/');
+    },
+
+    details: (req,res) =>{
+        let detailArgs=req.body.id;
+
+        User.findOne({id: detailArgs}).then(user => {
+            let userID =user._id;
+            Recipe.find({author:userID}).then(recipes=>{
+                res.render('user/details',{user:user,recipes:recipes});
+
+            })
+
+        });
+
+
+
+
     }
+
 };
