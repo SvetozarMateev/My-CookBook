@@ -5,6 +5,7 @@ const recipeController= require('./../controllers/recipe');
 module.exports = (app) => {
     app.get('/', homeController.index);
 
+
     app.get('/user/register', userController.registerGet);
     app.post('/user/register', userController.registerPost);
 

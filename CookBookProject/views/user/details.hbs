@@ -1,0 +1,49 @@
+<div class="container body-content">
+    <div class="row">
+        <div class="col-md-12">
+            <article>
+                <header>
+                    <div class="recipe-beg">
+                        <h2>Details</h2>
+                    </div>
+                </header>
+                <p class="user-prop">
+                    <span class="detail-name">Email: </span>
+                    <span class="user-details">{{user.email}}</span>
+                </p>
+                <p class="user-prop">
+                    <span class="detail-name">Full Name:</span>
+                    <span class="user-details">{{user.fullName}}</span>
+
+                </p>
+            </article>
+        </div>
+    </div>
+    <div class="row">
+        <div class="recipe-beg">
+            <h2>Recipes</h2>
+        </div>
+        {{#each user.recipes}}
+            <div class="col-md-6">
+                <article>
+                    <header>
+                        <h2>{{this.title}}</h2>
+                    </header>
+
+                    <p class="trimmed-content">{{trimming "400" this.content}}
+                    </p>
+
+                    <small class="author">
+                        {{this.author.fullName}}
+                    </small>
+
+                    <footer>
+                        <div class="pull-right">
+                            <a class="btn btn-default btn-xs" href="/recipe/details/{{this.id}}">Read more &raquo;</a>
+                        </div>
+                    </footer>
+                </article>
+            </div>
+        {{/each}}
+    </div>
+</div>

@@ -1,6 +1,6 @@
 const User = require('mongoose').model('User');
 const Role = require('mongoose').model('Role');
-const Recipe=require('mongoose').model('Recipe')
+const Recipe = require('mongoose').model('Recipe');
 
 const encryption = require('./../utilities/encryption');
 
@@ -9,7 +9,7 @@ module.exports = {
         res.render('user/register');
     },
 
-    registerPost:(req, res) => {
+    registerPost: (req, res) => {
         let registerArgs = req.body;
 
         User.findOne({email: registerArgs.email}).then(user => {
@@ -33,11 +33,11 @@ module.exports = {
                     fullName: registerArgs.fullName,
                     salt: salt
                 };
-                let roles=[];
-                Role.findOne({name:'User'}).then(role=>{
+                let roles = [];
+                Role.findOne({name: 'User'}).then(role => {
                     roles.push(role.id)
 
-                    userObject.roles=roles;
+                    userObject.roles = roles;
                     User.create(userObject).then(user => {
                         req.logIn(user, (err) => {
                             if (err) {
@@ -61,8 +61,9 @@ module.exports = {
 
     loginPost: (req, res) => {
         let loginArgs = req.body;
+
         User.findOne({email: loginArgs.email}).then(user => {
-            if (!user ||!user.authenticate(loginArgs.password)) {
+            if (!user || !user.authenticate(loginArgs.password)) {
                 let errorMsg = 'Either username or password is invalid!';
                 loginArgs.error = errorMsg;
                 res.render('user/login', loginArgs);
@@ -75,9 +76,9 @@ module.exports = {
                     res.redirect('/user/login', {error: err.message});
                     return;
                 }
-                let returnUrl='/';
-                if(req.session.returnUrl){
-                    returnUrl=req.session.returnUrl;
+                let returnUrl = '/';
+                if (req.session.returnUrl) {
+                    returnUrl = req.session.returnUrl;
                     delete req.session.returnUrl
                 }
                 res.redirect(returnUrl);
@@ -90,21 +91,11 @@ module.exports = {
         res.redirect('/');
     },
 
-    details: (req,res) =>{
-        let detailArgs=req.body.id;
-
-        User.findOne({id: detailArgs}).then(user => {
-            let userID =user._id;
-            Recipe.find({author:userID}).then(recipes=>{
-                res.render('user/details',{user:user,recipes:recipes});
-
-            })
-
+    details: (req, res) => {
+        let userId = req.user.id;
+        User.findById(userId).populate({path: 'recipes', model: 'Recipe'}).then(user => {
+            res.render('user/details', {user: user});
         });
-
-
-
-
     }
 
 };
